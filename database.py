@@ -66,3 +66,16 @@ def check_off_habit(habit_id, completed_at):
 
     conn.commit()
     conn.close()
+
+# This function shall add 5 predefined habits if the database is empty.
+def add_default_habits():
+    habits = get_all_habits()
+
+    # Only add habits if there are none yet
+    if len(habits) == 0:
+        add_habit("Drink Water", "Drink 2L of water", "daily")
+        add_habit("Exercise", "Do a short workout", "daily")
+        add_habit("Read", "Read 10 pages", "daily")
+        add_habit("Call Family", "Make a weekly call", "weekly")
+        add_habit("Clean Room", "Clean the room once a week", "weekly")
+
