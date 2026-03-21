@@ -3,6 +3,7 @@ import database
 
 # Make sure the database exists before the menu starts
 database.initialize_database()
+database.add_default_habits()
 
 
 def show_menu():
