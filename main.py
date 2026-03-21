@@ -1,5 +1,6 @@
 from datetime import datetime
 import database
+import analysis
 
 # Make sure the database exists before the menu starts
 database.initialize_database()
@@ -48,8 +49,8 @@ while True:
         database.check_off_habit(habit_id, completed_at)
         print("Habit checked off successfully.")
 
+    # Option 4: show all habit names
     elif choice == "4":
-        import analysis
         names = analysis.get_all_habit_names()
 
         if len(names) == 0:
@@ -59,8 +60,8 @@ while True:
             for name in names:
                 print(name)
 
+    # Option 5: show habits by periodicity
     elif choice == "5":
-        import analysis
         periodicity = input("Enter periodicity (daily/weekly): ")
 
         habits = analysis.get_habits_by_periodicity(periodicity)
@@ -75,9 +76,6 @@ while True:
         print("Goodbye!")
         break
 
-    # other choice is Invalid
+    # other choice is invalid
     else:
         print("Invalid option. Please try again.")
-
-if __name__ == "__main__":
-    main()
