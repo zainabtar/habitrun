@@ -10,7 +10,9 @@ def show_menu():
     print("1. Create a habit")
     print("2. View all habits")
     print("3. Check off a habit")
-    print("4. Exit")
+    print("4. Show all habit names")
+    print("5. Show habits by periodicity")
+    print("6. Exit")
 
 
 while True:
@@ -45,8 +47,30 @@ while True:
         database.check_off_habit(habit_id, completed_at)
         print("Habit checked off successfully.")
 
-    # Option 4: exit the program
-    elif choice == "4":
+        elif choice == "4":
+        import analysis
+        names = analysis.get_all_habit_names()
+
+        if len(names) == 0:
+            print("No habits found.")
+        else:
+            print("\nHabit Names:")
+            for name in names:
+                print(name)
+
+    elif choice == "5":
+        import analysis
+        periodicity = input("Enter periodicity (daily/weekly): ")
+
+        habits = analysis.get_habits_by_periodicity(periodicity)
+
+        if len(habits) == 0:
+            print("No habits found.")
+        else:
+            for habit in habits:
+                print(habit)
+
+    elif choice == "6":
         print("Goodbye!")
         break
 
