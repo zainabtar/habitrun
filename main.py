@@ -48,7 +48,7 @@ while True:
         database.check_off_habit(habit_id, completed_at)
         print("Habit checked off successfully.")
 
-        elif choice == "4":
+    elif choice == "4":
         import analysis
         names = analysis.get_all_habit_names()
 
