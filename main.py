@@ -4,12 +4,16 @@
 from datetime import datetime
 import database
 import analysis
+import seed_data  # NEW: import seed data
 
 # Create the database tables if they do not already exist
 database.initialize_database()
 
 # Add predefined habits if the database is empty
 database.add_default_habits()
+
+# Add 4-week example data (only runs once)
+seed_data.add_example_tracking_data()
 
 
 def show_menu():
@@ -28,19 +32,17 @@ while True:
     show_menu()
     choice = input("Choose an option: ")
 
-    # Option 1: create a new habit
     if choice == "1":
         name = input("Enter habit name: ")
         description = input("Enter habit description: ")
         periodicity = input("Enter periodicity (daily/weekly): ").lower()
 
         if periodicity not in ["daily", "weekly"]:
-            print("Invalid periodicity. Please enter 'daily' or 'weekly'.")
+            print("Invalid periodicity.")
         else:
             database.add_habit(name, description, periodicity)
             print("Habit added successfully.")
 
-    # Option 2: show all saved habits
     elif choice == "2":
         habits = database.get_all_habits()
 
@@ -51,7 +53,6 @@ while True:
             for habit in habits:
                 print(habit)
 
-    # Option 3: mark a habit as completed
     elif choice == "3":
         try:
             habit_id = int(input("Enter habit ID to check off: "))
@@ -59,9 +60,8 @@ while True:
             database.check_off_habit(habit_id, completed_at)
             print("Habit checked off successfully.")
         except ValueError:
-            print("Please enter a valid numeric habit ID.")
+            print("Invalid ID.")
 
-    # Option 4: show all habit names
     elif choice == "4":
         names = analysis.get_all_habit_names()
 
@@ -72,7 +72,6 @@ while True:
             for name in names:
                 print(name)
 
-    # Option 5: filter habits by periodicity
     elif choice == "5":
         periodicity = input("Enter periodicity (daily/weekly): ").lower()
         habits = analysis.get_habits_by_periodicity(periodicity)
@@ -84,19 +83,17 @@ while True:
             for habit in habits:
                 print(habit)
 
-    # Option 6: show longest streak for one habit
     elif choice == "6":
         try:
             habit_id = int(input("Enter habit ID: "))
             streak = analysis.get_longest_streak_for_habit(habit_id)
             print("Longest streak:", streak)
         except ValueError:
-            print("Please enter a valid numeric habit ID.")
+            print("Invalid ID.")
 
-    # Option 7: exit
     elif choice == "7":
         print("Goodbye!")
         break
 
     else:
-        print("Invalid option. Please try again.")
+        print("Invalid option.")
