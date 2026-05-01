@@ -1,4 +1,3 @@
-print("MAIN FILE IS RUNNING")
 
 from datetime import datetime
 import database
