@@ -1,4 +1,3 @@
-
 # main.py
 # This file runs the HabitRun application through a simple CLI menu.
 
@@ -6,7 +5,7 @@ from datetime import datetime
 import database
 import analysis
 
-# Create the database tables if they dont already exist
+# Create the database tables if they do not already exist
 database.initialize_database()
 
 # Add predefined habits if the database is empty
@@ -35,7 +34,6 @@ while True:
         description = input("Enter habit description: ")
         periodicity = input("Enter periodicity (daily/weekly): ").lower()
 
-        # Basic validation for periodicity
         if periodicity not in ["daily", "weekly"]:
             print("Invalid periodicity. Please enter 'daily' or 'weekly'.")
         else:
@@ -58,13 +56,12 @@ while True:
         try:
             habit_id = int(input("Enter habit ID to check off: "))
             completed_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
             database.check_off_habit(habit_id, completed_at)
             print("Habit checked off successfully.")
         except ValueError:
             print("Please enter a valid numeric habit ID.")
 
-    # Option 4: show the names of all habits
+    # Option 4: show all habit names
     elif choice == "4":
         names = analysis.get_all_habit_names()
 
@@ -75,7 +72,7 @@ while True:
             for name in names:
                 print(name)
 
-    # Option 5: show habits with same periodicity
+    # Option 5: filter habits by periodicity
     elif choice == "5":
         periodicity = input("Enter periodicity (daily/weekly): ").lower()
         habits = analysis.get_habits_by_periodicity(periodicity)
@@ -87,7 +84,7 @@ while True:
             for habit in habits:
                 print(habit)
 
-    # Option 6: show the longest streak for one habit
+    # Option 6: show longest streak for one habit
     elif choice == "6":
         try:
             habit_id = int(input("Enter habit ID: "))
@@ -96,11 +93,10 @@ while True:
         except ValueError:
             print("Please enter a valid numeric habit ID.")
 
-    # Option 7: exit the program
+    # Option 7: exit
     elif choice == "7":
         print("Goodbye!")
         break
 
-    # Any other choice is invalid
     else:
         print("Invalid option. Please try again.")
