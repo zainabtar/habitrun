@@ -20,9 +20,7 @@ HabitRun is a Python-based habit tracking backend application.
 Run the following command in the project folder:
 
 ```bash
-py main.py
-
-```markdown
+py main.py```
 
 ## Screenshots
 
