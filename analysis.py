@@ -1,5 +1,5 @@
 # analysis.py
-# File contains simple functions to analyze habit data.
+# This file contains simple functions to analyze habit data.
 
 from datetime import datetime
 import database

@@ -10,13 +10,13 @@ HabitRun is a Python-based habit tracking backend application.
 - Stores data locally in a SQLite database
 
 ## Project Structure
-- `main.py` - CLI interface
-- `habit.py` - Habit class
-- `tracker.py` - Core logic placeholder
-- `analysis.py` - Analytics (functional programming)
-- `database.py` - Data storage
-- `seed_data.py` - 4-week example tracking data
-- `test_habits.py` - Unit tests
+- main.py - CLI interface
+- habit.py - Habit class
+- tracker.py - Core logic placeholder
+- analysis.py - Analytics (functional programming)
+- database.py - Data storage
+- seed_data.py - 4-week example tracking data
+- test_habits.py - Unit tests
 
 ## How to Run
 
