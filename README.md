@@ -14,13 +14,14 @@ HabitRun is a Python-based habit tracking backend application.
 - `tracker.py` - Core logic placeholder
 - `analysis.py` - Analytics (functional programming)
 - `database.py` - Data storage
-
+  
+```markdown
 ## How to Run
 
 Run the following command in the project folder:
 
 ```bash
-py main.py```
+py main.py
 
 ## Screenshots
 
