@@ -3,7 +3,7 @@ HabitRun is a Python-based habit tracking backend application.
 Features:
 - Create then manage habits
 - Support for daily and weekly habits
-- Track streaks
+- Basic analytics (list and filter habits)
 - Command line interface (CLI)
 - Stores data locally in a SQLite database
 
