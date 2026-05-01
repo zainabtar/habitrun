@@ -23,6 +23,7 @@ Run the following command in the project folder:
 py main.py
 
 ```markdown
+
 ## Screenshots
 
 ### CLI Output
