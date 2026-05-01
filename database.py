@@ -79,3 +79,23 @@ def add_default_habits():
         add_habit("Call Family", "Make a weekly call", "weekly")
         add_habit("Clean Room", "Clean the room once a week", "weekly")
 
+def get_completions_for_habit(habit_id):
+    conn = sqlite3.connect(DB_NAME)
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT completed_at FROM completions
+        WHERE habit_id = ?
+        ORDER BY completed_at
+    """, (habit_id,))
+
+    results = cursor.fetchall()
+
+    conn.close()
+
+    # Extract timestamps into a list
+    completions = []
+    for row in results:
+        completions.append(row[0])
+
+    return completions
