@@ -20,3 +20,14 @@ Run the following command in the project folder:
 
 ```bash
 py main.py
+
+## Screenshots
+
+### CLI Output
+![CLI](screenshots/cli.png)
+
+### Streak Calculation
+![Streak](screenshots/streak.png)
+
+### Unit Tests
+![Tests](screenshots/tests.png)
