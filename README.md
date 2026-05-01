@@ -15,7 +15,7 @@ HabitRun is a Python-based habit tracking backend application.
 - `analysis.py` - Analytics (functional programming)
 - `database.py` - Data storage
   
-```markdown
+
 ## How to Run
 
 Run the following command in the project folder:
