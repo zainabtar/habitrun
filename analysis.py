@@ -1,8 +1,12 @@
+# analysis.py
+# File contains simple functions to analyze habit data.
+
+from datetime import datetime
 import database
 
 
-# Function displays all created habits
 def get_all_habit_names():
+    """Return a list of all habit names."""
     habits = database.get_all_habits()
     names = []
 
@@ -12,8 +16,8 @@ def get_all_habit_names():
     return names
 
 
-# Return the habits with periodicity (daily/weekly)
 def get_habits_by_periodicity(periodicity):
+    """Return habits with the given periodicity."""
     habits = database.get_all_habits()
     result = []
 
@@ -23,23 +27,22 @@ def get_habits_by_periodicity(periodicity):
 
     return result
 
-from datetime import datetime
-
 
 def get_longest_streak_for_habit(habit_id):
+    """Return the longest daily streak for one habit."""
     completions = database.get_completions_for_habit(habit_id)
 
     if len(completions) == 0:
         return 0
 
-    # Convert timestamps to date objects
+    # Convert timestamps into date objects
     dates = []
     for ts in completions:
         date = datetime.strptime(ts, "%Y-%m-%d %H:%M:%S").date()
         dates.append(date)
 
-    # Sort dates
-    dates.sort()
+    # Remove duplicates and sort dates
+    dates = sorted(set(dates))
 
     longest_streak = 1
     current_streak = 1
