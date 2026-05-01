@@ -1,5 +1,5 @@
 # database.py
-# File handles SQLite database setup and data storage.
+# This file handles SQLite database setup and data storage.
 
 import sqlite3
 
@@ -103,3 +103,17 @@ def get_completions_for_habit(habit_id):
         completions.append(row[0])
 
     return completions
+
+
+def add_completion_with_date(habit_id, completed_at):
+    """Save a completion event with a custom date (used for test data)."""
+    conn = sqlite3.connect(DB_NAME)
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        INSERT INTO completions (habit_id, completed_at)
+        VALUES (?, ?)
+    """, (habit_id, completed_at))
+
+    conn.commit()
+    conn.close()
