@@ -1,5 +1,6 @@
+# habit.py
+# This file defines the Habit class.
 
-# Creating habit object
 class Habit:
     def __init__(self, name, description, periodicity):
         self.name = name
