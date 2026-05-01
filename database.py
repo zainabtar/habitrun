@@ -1,11 +1,16 @@
+# database.py
+# File handles SQLite database setup and data storage.
+
 import sqlite3
 
-# This is a function that creates the database tables if not existing already.
+DB_NAME = "habits.db"
+
+
 def initialize_database():
+    """Create database tables if they do not already exist."""
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
-    # creating table to store habit
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS habits (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -15,7 +20,6 @@ def initialize_database():
         )
     """)
 
-    
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS completions (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -28,8 +32,8 @@ def initialize_database():
     conn.close()
 
 
-# This function saves new habit into the habits table.
 def add_habit(name, description, periodicity):
+    """Add a new habit to the database."""
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
@@ -42,8 +46,8 @@ def add_habit(name, description, periodicity):
     conn.close()
 
 
-# This function gets all the habits from the database.
 def get_all_habits():
+    """Return all habits from the database."""
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
@@ -54,8 +58,8 @@ def get_all_habits():
     return habits
 
 
-# This function will save a completion event for a habit.
 def check_off_habit(habit_id, completed_at):
+    """Save a completion event for a habit."""
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
@@ -67,11 +71,11 @@ def check_off_habit(habit_id, completed_at):
     conn.commit()
     conn.close()
 
-# This function shall add 5 predefined habits if the database is empty.
+
 def add_default_habits():
+    """Add predefined habits if the database is empty."""
     habits = get_all_habits()
 
-    # Only add habits if there are none yet
     if len(habits) == 0:
         add_habit("Drink Water", "Drink 2L of water", "daily")
         add_habit("Exercise", "Do a short workout", "daily")
@@ -79,7 +83,9 @@ def add_default_habits():
         add_habit("Call Family", "Make a weekly call", "weekly")
         add_habit("Clean Room", "Clean the room once a week", "weekly")
 
+
 def get_completions_for_habit(habit_id):
+    """Return all completion timestamps for one habit."""
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
@@ -90,10 +96,8 @@ def get_completions_for_habit(habit_id):
     """, (habit_id,))
 
     results = cursor.fetchall()
-
     conn.close()
 
-    # Extract timestamps into a list
     completions = []
     for row in results:
         completions.append(row[0])
